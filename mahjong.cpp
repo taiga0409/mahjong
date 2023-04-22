@@ -5,7 +5,7 @@
 // int manzu[36];
 // int souzu[36];
 // int jihai[28];
-
+//aaaa
 // int pinzu[9];
 // int manzu[9];
 // int souzu[9];
