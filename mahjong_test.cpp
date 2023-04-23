@@ -49,6 +49,7 @@ int main(){
 
     if(count(pinzu,manzu,souzu,jihai)) 
     show(pinzu,manzu,souzu,jihai);
+    cout << endl;
     for(int i = 0; i < 34 ; i++){
         if(find_jyantou(i,pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai)){
             for(int j = 0;j < 34; j++){

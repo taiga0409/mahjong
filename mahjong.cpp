@@ -192,30 +192,40 @@ bool find_jyantou(int i , int *pinzu, int *manzu , int *souzu, int *jihai,
 }
 
 bool find_syuntu(int i , int *pinzu, int *manzu, int *souzu, int *jihai){
+    bool syuntu = false;
     if(i < 7){
-        if(pinzu[i] >= 1 && pinzu[i+1] >= 1 && pinzu[i+2] >= 1){
+        // if(pinzu[i] >= 1 && pinzu[i+1] >= 1 && pinzu[i+2] >= 1){
+     while(pinzu[i] >= 1 && pinzu[i+1] >= 1 && pinzu[i+2] >= 1){
             pinzu[i] --;
             pinzu[i+1] --;
             pinzu[i+2] --;
             cout << "順子 : p" << i+1 << i+2 << i+3 << endl;
-            return true;
-        }
+            syuntu = true;
+     }
+     if(syuntu)
+        return true;
+        // }
     }else if (i >= 9 && i < 16){
-        if(manzu[i%9] >= 1 && manzu[(i%9)+1] >= 1 && manzu[(i%9)+2] >= 1){
+        while(manzu[i%9] >= 1 && manzu[(i%9)+1] >= 1 && manzu[(i%9)+2] >= 1){
             manzu[i%9] --;
             manzu[(i%9)-1] --;
             manzu[(i%9)-2] --;
             cout << "順子 : m" << (i%9)+1 << (i%9)+2 << (i%9)+3 << endl;
-            return true;
+            syuntu = true;
         }
+        if(syuntu)
+            return true;
+        
     }else if(i >= 18 && i < 26){
-        if(souzu[i%9] >= 1 && souzu[(i%9)+1] >= 1 && souzu[(i%9)+2] >= 1){
+        while(souzu[i%9] >= 1 && souzu[(i%9)+1] >= 1 && souzu[(i%9)+2] >= 1){
             souzu[i%9] --;
             souzu[(i%9)+1] --;
             souzu[(i%9)+2] --;
             cout << "順子 : s" << (i%9)+1 << (i%9)+2 << (i%9)+3 << endl;
-            return true;
+            syuntu = true;
         }
+        if(syuntu)
+            return true;
     }
     return false;
 }
