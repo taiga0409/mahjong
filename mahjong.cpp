@@ -5,7 +5,7 @@
 // int manzu[36];
 // int souzu[36];
 // int jihai[28];
-//aaaa
+
 // int pinzu[9];
 // int manzu[9];
 // int souzu[9];
@@ -121,19 +121,19 @@ void show(int *pinzu,int *manzu,int *souzu,int *jihai){
 bool find_mentu(int i,int *pinzu,int *manzu,int *souzu,int *jihai){
     if(i < 9){
             if(pinzu[i] >= 3){
-                cout << "メンツ : p" << i << endl;
+                cout << "メンツ : p" << i+1 << endl;
                 pinzu[i] -= 3;
                 return true;
             }
     }else if(i < 18){
             if(manzu[i % 9] >= 3){
-                cout << "メンツ : m" << i % 9 << endl;
+                cout << "メンツ : m" << (i % 9)+1 << endl;
                 manzu[i % 9] -= 3;
                 return true;
             }
     }else if(i < 27){
             if(souzu[i % 9] >= 3){
-                cout << "メンツ : s" << i % 9 << endl;
+                cout << "メンツ : s" << (i % 9)+1 << endl;
                 souzu[i % 9] -= 3;
                 return true;
             }
@@ -147,20 +147,23 @@ bool find_mentu(int i,int *pinzu,int *manzu,int *souzu,int *jihai){
     return false;
 }
 
-bool find_jyantou(int i , int *pinzu, int *manzu , int *souzu, int *jihai){
+bool find_jyantou(int i , int *pinzu, int *manzu , int *souzu, int *jihai,
+                    int *c_pinzu, int *c_manzu, int *c_souzu, int *c_jihai){
     // cout << i << endl;
     if(i < 9){
         // cout << pinzu[i] << endl; 
             if(pinzu[i] >= 2){
                 cout << "雀頭 : p" << i+1 << endl;
-                pinzu[i] -= 2;
+                copy_haipai(pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai);
+                c_pinzu[i] -= 2;
                 return true;
             }
     }else if(i < 18){
         // cout << manzu[i % 9] << endl;
             if(manzu[i % 9] >= 2){
                 cout << "雀頭 : m" << (i % 9) + 1 << endl;
-                manzu[i % 9] -= 2;
+                copy_haipai(pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai);
+                c_manzu[i % 9] -= 2;
                 return true;
             }
     }else if(i < 27){
@@ -168,7 +171,8 @@ bool find_jyantou(int i , int *pinzu, int *manzu , int *souzu, int *jihai){
         
             if(souzu[i % 9] >= 2){
                 cout << "雀頭 : s" << (i % 9) + 1 << endl;
-                souzu[i % 9] -= 2;
+                copy_haipai(pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai);
+                c_souzu[i % 9] -= 2;
                 return true;
             }
      }else{
@@ -176,9 +180,10 @@ bool find_jyantou(int i , int *pinzu, int *manzu , int *souzu, int *jihai){
 
             if(jihai[i % 9] >= 2){
                 cout << "雀頭 : " ;
+                copy_haipai(pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai);
                 show_jihai(i % 9);
                 cout << endl;
-                jihai[i % 9] -= 2;
+                c_jihai[i % 9] -= 2;
                 return true;
             }
         }
@@ -236,4 +241,14 @@ bool find_syuntu(int i , int *pinzu, int *manzu, int *souzu, int *jihai){
 //     }
     
 // }
+
+void copy_haipai(int *pinzu,int *manzu, int *souzu,int *jihai,
+                int *c_pinzu, int *c_manzu, int *c_souzu, int *c_jihai){
+                    for(int i = 0 ;i < 9;i++){
+                        c_pinzu[i] = pinzu[i];
+                        c_manzu[i] = manzu[i];
+                        c_souzu[i] = souzu[i];
+                        if(i < 7) c_jihai[i] = jihai[i];
+                    }
+                }
 

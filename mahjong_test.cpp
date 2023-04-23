@@ -3,10 +3,10 @@
 
 int main(){
 
-    int pinzu[9];
-    int manzu[9];
-    int souzu[9];
-    int jihai[7];
+    int pinzu[9],c_pinzu[9];
+    int manzu[9],c_manzu[9];
+    int souzu[9],c_souzu[9];
+    int jihai[7],c_jihai[7];
 
     pinzu[0] = 1;
     pinzu[1] = 1;
@@ -46,16 +46,20 @@ int main(){
     jihai[5] = 0;
     jihai[6] = 0;
 
-    cout << souzu[8] << endl;
 
     if(count(pinzu,manzu,souzu,jihai)) 
     show(pinzu,manzu,souzu,jihai);
     for(int i = 0; i < 34 ; i++){
-        find_mentu(i,pinzu,manzu,souzu,jihai);
-        if(find_jyantou(i,pinzu,manzu,souzu,jihai)){
-            // find_mentu(i,pinzu,manzu,souzu,jihai);
+        if(find_jyantou(i,pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai)){
+            for(int j = 0;j < 34; j++){
+                find_mentu(j,c_pinzu,c_manzu,c_souzu,c_jihai);
+            }
+            for(int j = 0;j<34;j++){
+                find_syuntu(j,c_pinzu,c_manzu,c_souzu,c_jihai);
+            }
+            cout << endl;
         }
-        find_syuntu(i,pinzu,manzu,souzu,jihai);
+        // find_syuntu(i,pinzu,manzu,souzu,jihai);
         
     }
     return 0;
