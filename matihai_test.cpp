@@ -1,8 +1,6 @@
 #include "mahjong.hpp"
 
-
 int main(){
-
     int pinzu[9],c_pinzu[9];
     int manzu[9],c_manzu[9];
     int souzu[9],c_souzu[9];
@@ -36,7 +34,7 @@ int main(){
     souzu[5] = 0;
     souzu[6] = 0;
     souzu[7] = 0;
-    souzu[8] = 3;
+    souzu[8] = 2;
 
     jihai[0] = 2;
     jihai[1] = 0;
@@ -48,9 +46,6 @@ int main(){
 
     int count_mentu = 0;
 
-    if(count(pinzu,manzu,souzu,jihai)) 
-        show(pinzu,manzu,souzu,jihai);
-    cout << endl;
     for(int i = 0; i < 34 ; i++){
         if(find_jyantou(i,pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai)){
             for(int j = 0;j < 34; j++){
@@ -65,8 +60,10 @@ int main(){
                     // cout << count_mentu << endl;
                 }
             }
-            if(count_mentu == 4){
-                cout << "聴牌" << endl;
+            if(count_mentu == 3){
+                for(int j = 0; j < 34; j ++){
+                    find_matihai(j,c_pinzu,c_manzu,c_souzu,c_jihai);
+                }
             }else{
                 cout << "ノーテン" << endl;
             }
@@ -76,5 +73,4 @@ int main(){
         // find_syuntu(i,pinzu,manzu,souzu,jihai);
         
     }
-    return 0;
 }
