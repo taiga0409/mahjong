@@ -8,15 +8,15 @@ int main(){
     int souzu[9],c_souzu[9];
     int jihai[7],c_jihai[7];
 
-    pinzu[0] = 2;
-    pinzu[1] = 2;
+    pinzu[0] = 1;
+    pinzu[1] = 1;
     pinzu[2] = 2;
-    pinzu[3] = 0;
-    pinzu[4] = 0;
-    pinzu[5] = 0;
+    pinzu[3] = 1;
+    pinzu[4] = 1;
+    pinzu[5] = 1;
     pinzu[6] = 1;
-    pinzu[7] = 1;
-    pinzu[8] = 1;
+    pinzu[7] = 2;
+    pinzu[8] = 3;
 
     manzu[0] = 0;
     manzu[1] = 0;
@@ -36,9 +36,9 @@ int main(){
     souzu[5] = 0;
     souzu[6] = 0;
     souzu[7] = 0;
-    souzu[8] = 3;
+    souzu[8] = 0;
 
-    jihai[0] = 2;
+    jihai[0] = 0;
     jihai[1] = 0;
     jihai[2] = 0;
     jihai[3] = 0;
@@ -52,14 +52,16 @@ int main(){
         show(pinzu,manzu,souzu,jihai);
     cout << endl;
     for(int i = 0; i < 34 ; i++){
-        if(find_jyantou(i,pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai)){
+        if(find_jyantou(i,pinzu,manzu,souzu,jihai)){
+            copy_haipai(pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai);
+            delete_jyantou(i,c_pinzu,c_manzu,c_souzu,c_jihai);
             for(int j = 0;j < 34; j++){
                 if(find_coutu(j,c_pinzu,c_manzu,c_souzu,c_jihai)){
                     count_mentu ++;
                     // cout << count_mentu << endl;
                 }
             }
-            for(int j = 0;j<34;j++){
+            for(int j = 0;j<27;j++){
                 if(find_syuntu(j,c_pinzu,c_manzu,c_souzu,c_jihai)){
                     count_mentu ++;
                     // cout << count_mentu << endl;
