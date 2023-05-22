@@ -76,3 +76,7 @@ void tumo(int i, int *pinzu,int *manzu,int *souzu,int *jihai){
     }
     
 }
+
+void find_matihai(int *pinzu, int *manzu, int *souzu, int *jihai){
+    for()
+}

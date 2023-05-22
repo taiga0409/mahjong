@@ -113,32 +113,40 @@ void show(int *pinzu,int *manzu,int *souzu,int *jihai){
 
 
 bool find_coutu(int i,int *pinzu,int *manzu,int *souzu,int *jihai){
+
     if(i < 9){
             if(pinzu[i] >= 3){
                 cout << "メンツ : p" << i+1 << endl;
-                pinzu[i] -= 3;
                 return true;
             }
     }else if(i < 18){
             if(manzu[i % 9] >= 3){
                 cout << "メンツ : m" << (i % 9)+1 << endl;
-                manzu[i % 9] -= 3;
                 return true;
             }
     }else if(i < 27){
             if(souzu[i % 9] >= 3){
                 cout << "メンツ : s" << (i % 9)+1 << endl;
-                souzu[i % 9] -= 3;
                 return true;
             }
      }else{
             if(jihai[i % 9] >= 3){
                 cout << "メンツ : " << i % 9 << endl;
-                jihai[i % 9] -= 3;
                 return true;
             }
         }
     return false;
+}
+void delete_coutu(int i, int *pinzu, int *manzu, int *souzu, int *jihai){
+    if(i < 9){
+        pinzu[i] -= 3;
+    }else if(i < 18){
+        manzu[i % 9] -= 3;
+    }else if(i < 27){
+        souzu[i % 9] -= 3;
+     }else{
+        jihai[i % 9] -= 3;
+        }
 }
 
 bool find_jyantou(int i , int *pinzu, int *manzu , int *souzu, int *jihai){
