@@ -5,11 +5,11 @@ int main(){
     int manzu[9],c_manzu[9],c1_manzu[9];
     int souzu[9],c_souzu[9],c1_souzu[9];
     int jihai[7],c_jihai[7],c1_jihai[7];
-    bool haipai_syuntu[34];
+    bool haipai_coutu[34];
     bool agari[34];
     for(int i = 0; i< 34; i++){
         agari[i] = false;
-        haipai_syuntu[i] = false;
+        haipai_coutu[i] = false;
     }
 
     pinzu[0] = 1;
@@ -63,26 +63,26 @@ int main(){
                 copy_haipai(c_pinzu,c_manzu,c_souzu,c_jihai,c1_pinzu,c1_manzu,c1_souzu,c1_jihai);
                 delete_jyantou(i,c1_pinzu,c1_manzu,c1_souzu,c1_jihai);
                 for(int k = 0; k < 34; j ++){
-                    if(find_syuntu(k,c1_pinzu,c1_manzu,c1_souzu,c1_jihai)){
-                        haipai_syuntu[k] = true;
+                    if(find_coutu(k,c1_pinzu,c1_manzu,c1_souzu,c1_jihai)){
+                        haipai_coutu[k] = true;
+                        break;
                     }
                 }
                 for(int j = 0;j < 34; j++){
-                    if(haipai_syuntu[j] == true){
-                        delete_syuntu(j,c1_pinzu,c1_manzu,c1_souzu,c1_jihai);
+                    if(haipai_coutu[j] == true){
+                        delete_coutu(j,c1_pinzu,c1_manzu,c1_souzu,c1_jihai);
                         count_mentu ++;
                     }
+                
+                for(int j = 0;j < 34;j++){
                     if(find_coutu(j,c1_pinzu,c1_manzu,c1_souzu,c1_jihai)){
                         count_mentu ++;
                         // cout << count_mentu << endl;
                     }
                 }
-                for(int j = 0;j<34;j++){
-                    if(find_syuntu(j,c1_pinzu,c1_manzu,c1_souzu,c1_jihai)){
-                        count_mentu ++;
-                        // cout << count_mentu << endl;
                     }
                 }
+                delete_syuntu(count_mentu,c1_pinzu,c1_manzu,c1_souzu,c1_jihai);
                 if(count_mentu == 4){
                     cout << "聴牌" << endl;
                     agari[j] = true;

@@ -21,5 +21,6 @@ void find_matihai(int i,int *pinzu,int *manzu,int *souzu,int *jihai);
 
 void tumo(int i , int *pinzu, int *manzu,int *souzu, int *jihai);
 void find_matihai_1(int *pinzu, int *manzu, int *souzu, int *jihai);
+void choose_coutu(int i,int *pinzu, int *manzu, int *souzu, int *jihai);
 
 #endif //MAHJONG_HPP_     

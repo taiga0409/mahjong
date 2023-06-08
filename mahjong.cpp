@@ -138,6 +138,8 @@ bool find_coutu(int i,int *pinzu,int *manzu,int *souzu,int *jihai){
     return false;
 }
 void delete_coutu(int i, int *pinzu, int *manzu, int *souzu, int *jihai){
+    int c_pinzu[9],c_manzu[9],c_souzu[9],c_jihai[7];
+    
     if(i < 9){
         pinzu[i] -= 3;
     }else if(i < 18){
@@ -147,8 +149,13 @@ void delete_coutu(int i, int *pinzu, int *manzu, int *souzu, int *jihai){
      }else{
         jihai[i % 9] -= 3;
         }
+        copy_haipai(pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai);
+        //ループ
 }
 
+void choose_coutu(int i, int *pinzu, int *manzu, int *souzu, int *jihai){
+    for(int )
+}
 bool find_jyantou(int i , int *pinzu, int *manzu , int *souzu, int *jihai){
     // cout << i << endl;
     if(i < 9){
@@ -248,6 +255,13 @@ bool find_syuntu(int &i , int *pinzu, int *manzu, int *souzu, int *jihai){
         //     return true;
     }
     return false;
+}
+void delete_syuntu(int count_mentu, int *pinzu, int *manzu,int *souzu, int *jihai){
+    for(int i = 0; i < 34; i++){
+        if(find_syuntu(i,pinzu,manzu,souzu,jihai)){
+            count_mentu ++;
+        }
+    }
 }
 
 
