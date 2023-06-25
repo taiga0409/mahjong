@@ -1,4 +1,5 @@
 #include "mahjong.hpp"
+#include <vector>
 
 int main(){
     int pinzu[9],c_pinzu[9],c1_pinzu[9];
@@ -16,11 +17,11 @@ int main(){
     pinzu[1] = 1;
     pinzu[2] = 1;
     pinzu[3] = 1;
-    pinzu[4] = 3;
-    pinzu[5] = 3;
-    pinzu[6] = 1;
+    pinzu[4] = 1;
+    pinzu[5] = 1;
+    pinzu[6] = 2;
     pinzu[7] = 2;
-    pinzu[8] = 0;
+    pinzu[8] = 3;
 
     manzu[0] = 0;
     manzu[1] = 0;
@@ -55,49 +56,22 @@ int main(){
         copy_haipai(pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai);
         tumo(j,c_pinzu,c_manzu,c_souzu,c_jihai);
         if(count(c_pinzu,c_manzu,c_souzu,c_jihai)){
-            show(c_pinzu,c_manzu,c_souzu,c_jihai);
+            show_tehai(c_pinzu,c_manzu,c_souzu,c_jihai);
             cout << endl;
+        }else{
+            break;
         }
-        for(int i = 0; i < 34 ; i++){
+            for(int i = 0; i < 34 ; i++){
             if(find_jyantou(i,c_pinzu,c_manzu,c_souzu,c_jihai)){
+                count_mentu = 0;
                 copy_haipai(c_pinzu,c_manzu,c_souzu,c_jihai,c1_pinzu,c1_manzu,c1_souzu,c1_jihai);
                 delete_jyantou(i,c1_pinzu,c1_manzu,c1_souzu,c1_jihai);
-                for(int k = 0; k < 34; j ++){
-                    if(find_coutu(k,c1_pinzu,c1_manzu,c1_souzu,c1_jihai)){
-                        haipai_coutu[k] = true;
-                        break;
-                    }
-                }
-                for(int j = 0;j < 34; j++){
-                    if(haipai_coutu[j] == true){
-                        delete_coutu(j,c1_pinzu,c1_manzu,c1_souzu,c1_jihai);
-                        count_mentu ++;
-                    }
+                find_matihai(0,&count_mentu,j,agari,c1_pinzu,c1_manzu,c1_souzu,c1_jihai);
                 
-                for(int j = 0;j < 34;j++){
-                    if(find_coutu(j,c1_pinzu,c1_manzu,c1_souzu,c1_jihai)){
-                        count_mentu ++;
-                        // cout << count_mentu << endl;
-                    }
-                }
-                    }
-                }
-                delete_syuntu(count_mentu,c1_pinzu,c1_manzu,c1_souzu,c1_jihai);
-                if(count_mentu == 4){
-                    cout << "聴牌" << endl;
-                    agari[j] = true;
-                }else{
-                    cout << "ノーテン" << endl;
-                }
-                cout << endl;
             }
-            count_mentu = 0;
-            // find_syuntu(i,pinzu,manzu,souzu,jihai);
             
-        }
+            
+            }
     }
-    for(int i = 0; i < 34; i ++){
-        if(agari[i]) cout << i+1 << " ";
-    }
-    cout << endl;
+    show_matihai(agari);
 }

@@ -58,22 +58,5 @@ void find_mati(int i,int *pinzu,int *manzu, int *souzu, int *jihai){
         
 }
 
-void tumo(int i, int *pinzu,int *manzu,int *souzu,int *jihai){
-    cout << "ツモ : " ;
-    if(i < 9){
-        pinzu[i] ++;
-        cout << "p" << i+1 << endl;
-    }else if (i < 18){
-        manzu[i % 9] ++;
-        cout << "m" << (i % 9)+1 << endl;
-    }else if (i < 27){
-        souzu[i % 9] ++;
-        cout << "s" << (i%9)+1 << endl;
-    }else{
-        jihai[i % 9] ++;
-        show_jihai(i);
-        cout << endl;
-    }
-    
-}
+
 
