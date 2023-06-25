@@ -106,7 +106,8 @@ void show_matihai(bool *agari){
     cout << "待ち : ";
     for(int i = 0;i < 34;i++){
         if(agari[i] == true){
-            false = true;
+            
+            choise = true;
             if(i < 9){
                 cout << "p" << i+1 << " ";
             }else if (i < 18){
@@ -295,7 +296,7 @@ void find_matihai(int n ,int *count,int m,bool *agari,  int *pinzu, int *manzu, 
             int c_pinzu[9],c_manzu[9],c_souzu[9],c_jihai[7];
             copy_haipai(pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai);
             int c_count = *count;
-            find_matihai(i+1,&c_count,c_pinzu,c_manzu,c_souzu,c_jihai);
+            find_matihai(i+1,&c_count,m,agari,c_pinzu,c_manzu,c_souzu,c_jihai);
             delete_coutu(i,count,pinzu,manzu,souzu,jihai);
         }
     }
@@ -307,6 +308,24 @@ void find_matihai(int n ,int *count,int m,bool *agari,  int *pinzu, int *manzu, 
          cout << "ノーテン" << endl;
     }
 }
+
+bool find_chitoi(int *pinzu, int *manzu, int *souzu, int *jihai){
+    int count = 0;
+    for(int i = 0;i<34;i++){
+        if(i<9){
+            if(pinzu[i] == 2) count ++;
+        }else if (i < 18){
+            if(manzu[i%9] == 2) count ++;
+        }else if(i < 27){
+            if(souzu[i%9] == 2) count ++;
+        }else{
+            if(jihai[i%9] == 2) count ++;
+        }
+    }
+    if(count == 7) {return true;}
+    return false;
+}
+
 
 void tumo(int i, int *pinzu,int *manzu,int *souzu,int *jihai){
     cout << "ツモ : " ;

@@ -7,28 +7,32 @@ int main(){
     int manzu[9],c_manzu[9];
     int souzu[9],c_souzu[9];
     int jihai[7],c_jihai[7];
+    vector<int> koutu(0);
+    vector<int> syuntu(0);
+    int jyantou;
 
-    pinzu[0] = 1;
-    pinzu[1] = 1;
-    pinzu[2] = 1;
-    pinzu[3] = 1;
-    pinzu[4] = 1;
-    pinzu[5] = 1;
-    pinzu[6] = 1;
-    pinzu[7] = 1;
+
+    pinzu[0] = 2;
+    pinzu[1] = 2;
+    pinzu[2] = 2;
+    pinzu[3] = 2;
+    pinzu[4] = 2;
+    pinzu[5] = 2;
+    pinzu[6] = 2;
+    pinzu[7] = 0;
     pinzu[8] = 0;
 
     manzu[0] = 0;
     manzu[1] = 0;
-    manzu[2] = 1;
-    manzu[3] = 1;
-    manzu[4] = 1;
-    manzu[5] = 1;
+    manzu[2] = 0;
+    manzu[3] = 0;
+    manzu[4] = 0;
+    manzu[5] = 0;
     manzu[6] = 0;
     manzu[7] = 0;
     manzu[8] = 0;
 
-    souzu[0] = 2;
+    souzu[0] = 0;
     souzu[1] = 0;
     souzu[2] = 0;
     souzu[3] = 0;
@@ -49,8 +53,11 @@ int main(){
     int count_mentu = 0;
 
     if(count(pinzu,manzu,souzu,jihai)) 
-        show(pinzu,manzu,souzu,jihai);
+        show_tehai(pinzu,manzu,souzu,jihai);
     cout << endl;
+    if(find_chitoi(pinzu,manzu,souzu,jihai)){
+        cout << "チートイツ" << endl;
+    }
     for(int i = 0; i < 34 ; i++){
         if(find_jyantou(i,pinzu,manzu,souzu,jihai)){
             count_mentu = 0;
