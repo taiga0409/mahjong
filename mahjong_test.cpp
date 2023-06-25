@@ -8,15 +8,15 @@ int main(){
     int souzu[9],c_souzu[9];
     int jihai[7],c_jihai[7];
 
-    pinzu[0] = 1;
-    pinzu[1] = 1;
-    pinzu[2] = 2;
+    pinzu[0] = 0;
+    pinzu[1] = 3;
+    pinzu[2] = 3;
     pinzu[3] = 1;
     pinzu[4] = 1;
-    pinzu[5] = 1;
+    pinzu[5] = 2;
     pinzu[6] = 1;
-    pinzu[7] = 2;
-    pinzu[8] = 3;
+    pinzu[7] = 3;
+    pinzu[8] = 0;
 
     manzu[0] = 0;
     manzu[1] = 0;
@@ -53,28 +53,11 @@ int main(){
     cout << endl;
     for(int i = 0; i < 34 ; i++){
         if(find_jyantou(i,pinzu,manzu,souzu,jihai)){
+            count_mentu = 0;
             copy_haipai(pinzu,manzu,souzu,jihai,c_pinzu,c_manzu,c_souzu,c_jihai);
             delete_jyantou(i,c_pinzu,c_manzu,c_souzu,c_jihai);
-            for(int j = 0;j < 34; j++){
-                if(find_coutu(j,c_pinzu,c_manzu,c_souzu,c_jihai)){
-                    count_mentu ++;
-                    // cout << count_mentu << endl;
-                }
-            }
-            for(int j = 0;j<27;j++){
-                if(find_syuntu(j,c_pinzu,c_manzu,c_souzu,c_jihai)){
-                    count_mentu ++;
-                    // cout << count_mentu << endl;
-                }
-            }
-            if(count_mentu == 4){
-                cout << "聴牌" << endl;
-            }else{
-                cout << "ノーテン" << endl;
-            }
-            cout << endl;
+            find_matihai(0,&count_mentu,c_pinzu,c_manzu,c_souzu,c_jihai);
         }
-        count_mentu = 0;
         // find_syuntu(i,pinzu,manzu,souzu,jihai);
         
     }

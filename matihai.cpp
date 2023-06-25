@@ -1,6 +1,6 @@
 #include "mahjong.hpp"
 
-void find_matihai(int i,int *pinzu,int *manzu, int *souzu, int *jihai){
+void find_mati(int i,int *pinzu,int *manzu, int *souzu, int *jihai){
     if(i < 9){
         if(pinzu[i] == 2){
             cout << "p" << i+1 << " シャボ待ち" << endl;
@@ -77,6 +77,3 @@ void tumo(int i, int *pinzu,int *manzu,int *souzu,int *jihai){
     
 }
 
-void find_matihai(int *pinzu, int *manzu, int *souzu, int *jihai){
-    for()
-}
