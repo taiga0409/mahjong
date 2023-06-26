@@ -4,7 +4,7 @@
 void show_jihai(int i){
     string jihai;
     switch(i%9){
-        case 0: jihai = "東"; break;
+        case 0: jihai = "東"; break;//27
         case 1: jihai = "南"; break;
         case 2: jihai = "西"; break;
         case 3: jihai = "北"; break;

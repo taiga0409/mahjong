@@ -74,6 +74,52 @@ void peikou(vector<int> syuntu, int *han){
         *han = *han + 1;
     }
 }
-void yakuhai(vector<int> coutu, int *han){
-    
+void yakuhai(vector<int> coutu,int bakaze,int jikaze, int *han){
+    for(int i : coutu){
+        if(i == 31 ) {
+            cout << "白" << endl;
+            *han = *han + 1;
+        }
+        if(i == 32){
+            cout << "發" << endl;
+            *han = *han + 1;
+        }
+        if(i == 33){
+            cout << "中" << endl;
+            *han = *han + 1;
+        }
+        if(i == jikaze){
+            cout << "自風牌" << endl;
+            *han = *han + 1;
+        }
+        if(i == bakaze){
+            cout << "場風牌" << endl;
+            *han = *han + 1;
+        }
+    }
 }
+void haitei(bool haitei, int *han){
+    if(haitei){
+        cout << "海底撈月" << endl;
+        *han = *han + 1;
+    }
+}
+void houtei(bool houtei , int *han){
+    if(houtei){
+        cout << "河底撈魚" << endl;
+        *han = *han + 1;
+    }
+}
+void rinsyan(bool rinsyan, int *han){
+    if(rinsyan){
+        cout << "嶺上開花" << endl;
+        *han = *han + 1;
+    }
+}
+void tyankan(bool tyankan, int *han){
+    if(tyankan){
+        cout << "槍槓" << endl;
+        *han = *han + 1;
+    }
+}
+// void pinhu(vector<int> syuntu)
