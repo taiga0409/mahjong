@@ -20,7 +20,6 @@ void show_jihai(int i);
 void copy_haipai(int *pinzu, int *manzu, int *souzu, int *jihai,
                 int *c_pinzu, int *c_manzu, int *c_souzu, int *c_jihai);
 void delete_jyantou(int i,int *pinzu, int *manzu, int *souzu, int *jihai);
-void find_mati(int i,int *pinzu,int *manzu,int *souzu,int *jihai);
 bool find_chitoi(int *pinzu, int *manzu, int *souzu, int *jihai);
 
 void tumo(int i , int *pinzu, int *manzu,int *souzu, int *jihai);
