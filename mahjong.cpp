@@ -5,12 +5,12 @@ void show_jihai(int i){
     string jihai;
     switch(i%9){
         case 0: jihai = "東"; break;//27
-        case 1: jihai = "南"; break;
-        case 2: jihai = "西"; break;
-        case 3: jihai = "北"; break;
-        case 4: jihai = "白"; break;
-        case 5: jihai = "發"; break;
-        case 6: jihai = "中"; break;
+        case 1: jihai = "南"; break;//28
+        case 2: jihai = "西"; break;//29
+        case 3: jihai = "北"; break;//30
+        case 4: jihai = "白"; break;//31
+        case 5: jihai = "發"; break;//32
+        case 6: jihai = "中"; break;//33
     }
     cout << jihai ;
     
