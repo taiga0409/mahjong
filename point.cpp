@@ -221,3 +221,4 @@ void find_dora_kan(int dora, int *dora_num,bool *choise,vector<int> array){
         }
     }
 }
+

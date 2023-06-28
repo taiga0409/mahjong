@@ -2,13 +2,19 @@
 
 
 
-void  find_mati(int *mati,int tumo, vector<int> syuntu, vector<int> coutu,int jyantou){
+void  find_mati(int *mati,int tumo, vector<int> syuntu, vector<int> anko,vector<int> minko,int jyantou){
     cout << "ツモ： " << tumo << endl;
     if(tumo == jyantou){
         cout << "単騎待ち" << endl;
-        *mati = 0
+        *mati = 0;
     }
-    for(int i : coutu){
+    for(int i : anko){
+        if(tumo == i){
+            cout << "シャボ待ち" << endl;
+            *mati = 1;
+        }
+    }
+    for(int i : minko){
         if(tumo == i){
             cout << "シャボ待ち" << endl;
             *mati = 1;
