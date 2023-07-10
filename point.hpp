@@ -28,7 +28,7 @@ void find_dora_kan(int dora,int *dora_num,bool *choise, vector<int> array);
 void uradora(int uradora, vector<int> syuntu,vector<int> anko, vector<int> minko,vector<int> ankan, vector<int> minkan, int *han);
 
 //２飜]
-void daburi(bool daburi,int *han);
+void double_reach(bool daburi,int *han);
 void toitoi(vector<int> anko,vector<int> minko, vector<int> ankan, vector<int> minkan, int *han);
 void san_anko(vector<int> anko, vector<int> ankan, int *han);
 void sansyoku_doukou(vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan,int *han);

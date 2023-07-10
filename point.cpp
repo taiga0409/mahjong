@@ -222,3 +222,69 @@ void find_dora_kan(int dora, int *dora_num,bool *choise,vector<int> array){
     }
 }
 
+//2飜
+void double_reach(bool daburi, int *han){
+    if(daburi){
+        cout << "ダブルリーチ" << endl;
+        *han = *han + 2;
+    }
+}
+void toitoi(vector<int> anko,vector<int> minko,vector<int> ankan,vector<int> minkan,int*han){
+    int a = anko.size() + minko.size() + ankan.size() + minkan.size();
+    if(a == 4){
+        cout << "トイトイ" << endl;
+        *han = *han + 2;
+    }
+}
+void sa_anko(vector<int> anko, vector<int> ankan, int *han){
+    int a = anko.size() + ankan.size();
+    if(a == 4){
+        cout << "三暗刻" << endl;
+        *han = *han + 2;
+    }
+}
+void sansyoku_doukou(vector<int> anko, vector<int> minko,vector<int> ankan, vector<int> minkan,int *han){
+    int a = anko.size() + minko.size() + ankan.size() + minkan.size();
+    vector<int> num(0);
+    if(a >= 3){
+        for(int i : anko){
+            if(i < 27){
+                num.push_back(i%9);
+            }
+        }
+        for(int i : minko){
+            if(i < 27){
+                num.push_back(i%9);
+            }
+        }
+        for(int i : ankan){
+            if(i < 27){
+                num.push_back(i%9);
+            }
+        }
+        for(int i : minkan){
+            if(i < 27){
+                num.push_back(i%9);
+            }
+        }
+    }
+    int count_num;
+    for(int i = 0; i < 2;i++){
+        count_num = count(num.begin(),num.end(),num.at(i));
+        if(count_num == 3){
+            cout << "三色同刻" << endl;
+            *han = *han + 2;
+            break;
+        }
+    }
+   
+    
+}
+void sansyoku_doukou(bool menzen, vector<int> syuntu, int *han){
+    vector<int> num(0);
+    if(syuntu.size() >= 3){
+        for(int i : syuntu){
+            num.push_back(i);
+        }
+    }
+}

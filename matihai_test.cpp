@@ -14,14 +14,14 @@ int main(){
     }
 
     pinzu[0] = 0;
-    pinzu[1] = 3;
-    pinzu[2] = 1;
+    pinzu[1] = 1;
+    pinzu[2] = 3;
     pinzu[3] = 1;
-    pinzu[4] = 1;
-    pinzu[5] = 0;
+    pinzu[4] = 2;
+    pinzu[5] = 2;
     pinzu[6] = 2;
-    pinzu[7] = 2;
-    pinzu[8] = 3;
+    pinzu[7] = 1;
+    pinzu[8] = 1;
 
     manzu[0] = 0;
     manzu[1] = 0;
