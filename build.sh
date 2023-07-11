@@ -23,4 +23,4 @@ case $1 in
 esac
 
 
-#chmod +x build-sh
+#chmod +x build.sh
