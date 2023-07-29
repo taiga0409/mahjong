@@ -71,27 +71,29 @@ bool find_tanyao(vector<int> array){
     }
     return true;
 }
-void peikou(vector<int> syuntu, int *han){
-    bool ipeikou = false;
-    bool ryanpeikou = false;
-    if(syuntu.size() > 1){
-        for(int i = 0; i < syuntu.size()-1; i++){
-            if(syuntu.at(i) == syuntu.at(i+1)){
-                if(ipeikou){
-                    if(syuntu.at(i-1) != syuntu.at(i)){
-                        ryanpeikou = true;
+void peikou(vector<int> syuntu,bool menzen, int *han){
+    if(menzen){
+        bool ipeikou = false;
+        bool ryanpeikou = false;
+        if(syuntu.size() > 1){
+            for(int i = 0; i < syuntu.size()-1; i++){
+                if(syuntu.at(i) == syuntu.at(i+1)){
+                    if(ipeikou){
+                        if(syuntu.at(i-1) != syuntu.at(i)){
+                            ryanpeikou = true;
+                        }
                     }
+                    ipeikou = true;
                 }
-                ipeikou = true;
             }
         }
-    }
-    if(ryanpeikou){
-        cout << "二盃口" << endl;
-        *han = *han + 2;
-    }else if (ipeikou){
-        cout << "一盃口" << endl;
-        *han = *han + 1;
+        if(ryanpeikou){
+            cout << "二盃口" << endl;
+            *han = *han + 2;
+        }else if (ipeikou){
+            cout << "一盃口" << endl;
+            *han = *han + 1;
+        }
     }
 }
 void find_yakuhai(vector<int> coutu,int bakaze,int jikaze, int *han){
@@ -161,7 +163,7 @@ void pinhu(vector<int> syuntu,bool menzen,int jyantou,int bakaze, int jikaze,int
         }
     }
 }
-void dora(int dora,vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan,int *han){
+void dora_num(int dora,vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan,int *han){
     int dora_num = 0;
     bool choise = false;
     for(int i : syuntu){
@@ -182,7 +184,7 @@ void dora(int dora,vector<int> syuntu, vector<int> anko, vector<int> minko, vect
         *han = *han + dora_num;
     }
 }
-void uradora(int uradora,vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan,vector<int> minka , int *han){
+void uradora_num(int uradora,vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan,vector<int> minka , int *han){
     int uradora_num = 0;
     bool choise = false; 
     for(int i : syuntu){
@@ -650,4 +652,10 @@ void chinitu_souzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> ank
             *han = *han + 5;
         }
     }
+}
+
+//その他
+
+void show_han(int han){
+    cout << "ハン：" << han << endl;
 }

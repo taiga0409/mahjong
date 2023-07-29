@@ -345,3 +345,4 @@ void tumo(int i, int *pinzu,int *manzu,int *souzu,int *jihai){
     }
     
 }
+

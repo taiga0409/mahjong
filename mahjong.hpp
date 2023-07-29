@@ -27,4 +27,5 @@ void find_matihai(int i,int *count,int *pinzu, int *manzu, int *souzu, int *jiha
 void find_matihai(int i,int *count, int m, bool *agari,int *pinzu, int *manzu, int *souzu,int *jihai);
 void choose_coutu(int i,int *pinzu, int *manzu, int *souzu, int *jihai);
 
+
 #endif //MAHJONG_HPP_     
