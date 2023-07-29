@@ -40,9 +40,13 @@ void sankantu(vector<int> ankan, vector<int> minkan,int *han);
 void ikkituukan(vector<int> syuntu,bool menzen,int *han);
 //void titoitu
 //３飜以上
-void honitu(bool menzen,int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han);
+void honitu_pinzu(bool menzen,int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han);
+void honitu_manzu(bool menzen,int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han);
+void honitu_souzu(bool menzen,int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han);
 void jyuntyan(bool menzen, int jyantou, vector<int>syuntu, vector<int> anko,vector<int> minko,vector<int> ankan,vector<int> minkan,int *han);
-void chinitu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> miko,vector<int> ankan,vector<int> minkan, int *han);
+void chinitu_pinzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko,vector<int> ankan,vector<int> minkan, int *han);
+void chinitu_manzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko,vector<int> ankan,vector<int> minkan, int *han);
+void chinitu_souzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko,vector<int> ankan,vector<int> minkan, int *han);
 // void nagsimangan();
 // 役満
 void tenho(bool tenho, int *yakuman);
