@@ -75,15 +75,20 @@ void peikou(vector<int> syuntu,bool menzen, int *han){
     if(menzen){
         bool ipeikou = false;
         bool ryanpeikou = false;
+        int a = -1;
+        // for(int i = 0; i < syuntu.size(); i ++){
+        //     cout << syuntu.at(i) << endl;
+        // }
         if(syuntu.size() > 1){
             for(int i = 0; i < syuntu.size()-1; i++){
-                if(syuntu.at(i) == syuntu.at(i+1)){
-                    if(ipeikou){
-                        if(syuntu.at(i-1) != syuntu.at(i)){
+                for(int j = i+1; j < syuntu.size();j++){
+                    if((syuntu.at(i) == syuntu.at(j))&&(syuntu.at(i) != a)){
+                        if(ipeikou){
                             ryanpeikou = true;
                         }
+                        ipeikou = true;
+                        a = syuntu.at(i);
                     }
-                    ipeikou = true;
                 }
             }
         }
@@ -786,13 +791,13 @@ int calculate_point(int jikaze, int han, int hu){
         }else if (han  == 5){
             cout << "満貫" << endl;
             return 12000;
-        }else if (han == 6 && han == 7){
+        }else if (han == 6 || han == 7){
             cout << "跳満" << endl;
             return 18000;
-        }else if (han == 8 && han == 9 && han == 10){
+        }else if (han == 8 || han == 9 || han == 10){
             cout << "倍満" << endl;
             return 24000;
-        }else if (han == 11 && han == 12){
+        }else if (han == 11 || han == 12){
             cout << "三倍満" << endl;
             return 36000;
         }else {
@@ -836,17 +841,17 @@ int calculate_point(int jikaze, int han, int hu){
         }else if (han == 5){
             cout << "満貫" << endl;
             return 8000;
-        }else if (han == 6 && han == 7){
+        }else if (han == 6 || han == 7){
             cout << "跳満" << endl;
             return 12000;
-        }else if (han == 8 && han == 9 && han == 10){
+        }else if (han == 8 || han == 9 || han == 10){
             cout << "倍満" << endl;
             return 16000;
-        }else if (han == 11 && han == 12){
+        }else if (han == 11 || han == 12){
             cout << "三倍満" << endl;
             return 24000;
         } else {
-            cout << "数え満貫" << endl;
+            cout << "数え役満" << endl;
             return 32000;
         }
     }

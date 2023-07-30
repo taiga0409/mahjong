@@ -2,19 +2,19 @@
 #include "mahjong.hpp"
 
 int main(){
-    vector<int> syuntu = {14,4};// g++ -std=c++11 -o
-    vector<int> anko = {2,3};
+    vector<int> syuntu = {0,0,3,3};// g++ -std=c++11 -o
+    vector<int> anko = {};
     vector<int> minko = {};
     vector<int> ankan = {};
     vector<int> minkan = {};
-    int jyantou = 11;
+    int jyantou = 6;
     int tumo = 9;
     int mati = 1; //リャンメン待ち
     int jikaze = 29; //自風 : 西
     int bakaze = 27; //場風 : 東
     int dora = 25;
     int uradora = 19;
-    bool menzen = false;
+    bool menzen = true;
     bool B_tumo = false;
     bool B_reach = false;
     bool B_ippatu = false;
