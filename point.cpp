@@ -125,7 +125,7 @@ void yakuhai(vector<int> anko, vector<int> minko, vector<int> ankan, vector<int>
                 find_yakuhai(anko,bakaze,jikaze,han);
                 find_yakuhai(minko,bakaze,jikaze,han);
                 find_yakuhai(ankan,bakaze,jikaze,han);
-                find_yakuhai(minko,bakaze,jikaze,han);
+                find_yakuhai(minkan,bakaze,jikaze,han);
             }
 void haitei(bool haitei, int *han){
     if(haitei){
@@ -238,7 +238,7 @@ void toitoi(vector<int> anko,vector<int> minko,vector<int> ankan,vector<int> min
         *han = *han + 2;
     }
 }
-void sa_anko(vector<int> anko, vector<int> ankan, int *han){
+void san_anko(vector<int> anko, vector<int> ankan, int *han){
     int a = anko.size() + ankan.size();
     if(a == 4){
         cout << "三暗刻" << endl;
@@ -249,34 +249,35 @@ void sansyoku_doukou(vector<int> anko, vector<int> minko,vector<int> ankan, vect
     int a = anko.size() + minko.size() + ankan.size() + minkan.size();
     vector<int> num(0);
     if(a >= 3){
-        for(int i : anko){
+        for(int i = 0; i < anko.size();i++){
             if(i < 27){
-                num.push_back(i%9);
+                num.push_back(anko.at(i)%9);
             }
         }
-        for(int i : minko){
+        for(int i = 0; i < minko.size();i++){
             if(i < 27){
-                num.push_back(i%9);
+                num.push_back(minko.at(i)%9);
             }
         }
-        for(int i : ankan){
+        for(int i = 0; i < ankan.size(); i++){
             if(i < 27){
-                num.push_back(i%9);
+                num.push_back(ankan.at(i)%9);
             }
         }
-        for(int i : minkan){
+        for(int i = 0; i < minkan.size();i++){
             if(i < 27){
-                num.push_back(i%9);
+                num.push_back(minkan.at(i)%9);
             }
         }
-    }
-    int count_num;
-    for(int i = 0; i < 2;i++){
-        count_num = count(num.begin(),num.end(),num.at(i));
-        if(count_num == 3){
-            cout << "三色同刻" << endl;
-            *han = *han + 2;
-            break;
+    
+        int count_num;
+        for(int i = 0; i < 2;i++){
+            count_num = count(num.begin(),num.end(),num.at(i));
+            if(count_num == 3){
+                cout << "三色同刻" << endl;
+                *han = *han + 2;
+                break;
+            }
         }
     }
    
@@ -284,10 +285,10 @@ void sansyoku_doukou(vector<int> anko, vector<int> minko,vector<int> ankan, vect
 }
 void sansyoku_doujyun(bool menzen, vector<int> syuntu, int *han){
     if(syuntu.size() >= 3){
-        vector<int> num(0);
+        vector<int> num;
         bool a = true;
         int count = 0;
-        for(int i = 0; i < syuntu.size();i++){
+        for(int i = 0; i < syuntu.size()-1;i++){
             for(int j = i + 1; j < syuntu.size();j++){
                 if(syuntu.at(i) == syuntu.at(j)){
                     a = false;
@@ -297,12 +298,13 @@ void sansyoku_doujyun(bool menzen, vector<int> syuntu, int *han){
                 num.push_back(syuntu.at(i) % 9);
             }
             a = true;
-            if(i == syuntu.size() - 1){
-                num.push_back(syuntu.at(i) % 9);
-            }
         }
-        for(int i : num){
-            for(int j : num){
+        num.push_back(syuntu.at(syuntu.size()-1)%9);
+        // for(int i = 0; i < num.size(); i++){
+        //     cout << num.at(i) << endl;
+        // }
+        for(int i = 0; i < num.size();i++){
+            for(int j = 0; j < num.size(); j++){
                 if(num.at(i) == num.at(j)){
                     count ++;
                 }
@@ -322,7 +324,7 @@ void sansyoku_doujyun(bool menzen, vector<int> syuntu, int *han){
     }
 }
 bool find_yaotyu(vector<int> array){
-    for(int i : array){
+    for(int i = 0;i < array.size() ;i++){
         if(!(array.at(i) >= 27 || array.at(i) % 9 == 0 || array.at(i) %9 == 8)){
             return false;
         }
@@ -341,18 +343,20 @@ void honroutou(int jyantou, vector<int> anko,vector<int> minko, vector<int> anka
     }
 }
 void tyanta(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
-    if(jyantou >= 27 || jyantou % 9 == 0 || jyantou % 9 == 8){
-        if(find_yaotyu(anko) && find_yaotyu(minko) && find_yaotyu(ankan) && find_yaotyu(minkan)){
-            for(int i : syuntu){
-                if(!(syuntu.at(i) % 9 == 0 && syuntu.at(i) % 9 == 6 )){
-                    break;
+    if(syuntu.size() > 0){
+        if(jyantou >= 27 || jyantou % 9 == 0 || jyantou % 9 == 8){
+            if(find_yaotyu(anko) && find_yaotyu(minko) && find_yaotyu(ankan) && find_yaotyu(minkan)){
+                for(int i = 0; i < syuntu.size(); i++ ){
+                    if(!(syuntu.at(i) % 9 == 0 && syuntu.at(i) % 9 == 6 )){
+                        return;
+                    }
                 }
-            }
-            cout << "チャンタ" << endl;
-            if(menzen){
-                *han = *han + 2;
-            }else{
-                *han = *han + 1;
+                cout << "チャンタ" << endl;
+                if(menzen){
+                    *han = *han + 2;
+                }else{
+                    *han = *han + 1;
+                }
             }
         }
     }
@@ -364,16 +368,16 @@ void syousangen(int jyantou, vector<int> anko, vector<int> minko, vector<int> an
         count ++;
         syousangen = true;
         if(syousangen){
-            for(int i : anko){
+            for(int i = 0;i < anko.size();i++){
                 if(30 < anko.at(i) && anko.at(i) < 34) count ++;
             }
-            for(int i : minko){
+            for(int i = 0; i < minko.size();i++){
                 if(30 < minko.at(i) && minko.at(i) < 34) count ++;
             }
-            for(int i : ankan){
+            for(int i = 0; i < ankan.size();i++){
                 if(30 < ankan.at(i) && ankan.at(i) < 34) count ++;
             }
-            for(int i : minkan){
+            for(int i = 0; i < minkan.size();i++){
                 if(30 < minkan.at(i) && minkan.at(i) < 34) count ++;
             }
             if(count == 3){
@@ -397,7 +401,7 @@ void ikkituukan(vector<int> syuntu, bool menzen, int *han){
         bool a = true;
         bool choice = false;
         int count = 0;
-        for(int i = 0; i < syuntu.size(); i++){
+        for(int i = 0; i < syuntu.size()-1; i++){
             for(int j = i + 1; j < syuntu.size();j++){
                 if(syuntu.at(i) == syuntu.at(j)){
                     a = false;
@@ -407,11 +411,9 @@ void ikkituukan(vector<int> syuntu, bool menzen, int *han){
                 num.push_back(syuntu.at(i));
             }
             a = true;
-            if(i == syuntu.size() - 1){
-                num.push_back(syuntu.at(i));
-            }
         }
-        for(int i : num){
+        num.push_back(syuntu.at(syuntu.size()-1));
+        for(int i = 0; i < num.size();i++){
             if(syuntu.at(i) < 9 && syuntu.at(i) % 3 == 0){
                 count ++;
             }
@@ -420,7 +422,7 @@ void ikkituukan(vector<int> syuntu, bool menzen, int *han){
             choice = true;
         }
         count = 0;
-        for(int i : num){
+        for(int i = 0; i < num.size(); i++){
             if(8 < syuntu.at(i)&& syuntu.at(i) && syuntu.at(i) % 3 == 0){
                 count ++;
             }
@@ -429,7 +431,7 @@ void ikkituukan(vector<int> syuntu, bool menzen, int *han){
             choice = true;
         }
         count = 0;
-        for(int i : num){
+        for(int i = 0; i < num.size(); i++){
             if(17 < syuntu.at(i) && syuntu.at(i) < 27 && syuntu.at(i) % 3 == 0){
                 count ++;
             }
@@ -447,128 +449,162 @@ void ikkituukan(vector<int> syuntu, bool menzen, int *han){
         }
     }
 }
-void honitu_pinzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
+void somete_pinzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
+    bool tinitu = true;
     if((0 <= jyantou && jyantou <= 8)|| 27 <= jyantou){
-        for(int i : syuntu){
+        if(27 <= jyantou ) tinitu = false;
+        for(int i = 0; i < syuntu.size();i++){
             if(!(0 <= syuntu.at(i) && syuntu.at(i) <= 8)){
                 return;
             }
         }
-        for(int i : anko){
+        for(int i = 0; i < anko.size(); i++){
             if(!((0 <= anko.at(i) && anko.at(i) <= 8)|| 27 <= anko.at(i) )){
                 return;
+                if(27 <= anko.at(i) ) tinitu = false;
             }
         }
-        for(int i : minko){
-            if(!((0 <= anko.at(i) && anko.at(i) <= 8)|| 27 <= anko.at(i) )){
+        for(int i = 0; i < minko.size();i++){
+            if(!((0 <= minko.at(i) && minko.at(i) <= 8)|| 27 <= minko.at(i) )){
                 return;
+                if(27 <= minko.at(i) ) tinitu = false;
             }
         }
-        for(int i : ankan){
-            if(!((0 <= anko.at(i) && anko.at(i) <= 8)|| 27 <= anko.at(i) )){
+        for(int i = 0; i < ankan.size(); i ++){
+            if(!((0 <= ankan.at(i) && ankan.at(i) <= 8)|| 27 <= ankan.at(i) )){
                 return;
+                if(27 <= ankan.at(i) ) tinitu = false;
             }
         }
-        for(int i : minkan){
-            if(!((0 <= anko.at(i) && anko.at(i) <= 8)|| 27 <= anko.at(i) )){
+        for(int i = 0; i < minkan.size();i++){
+            if(!((0 <= minkan.at(i) && minkan.at(i) <= 8)|| 27 <= minkan.at(i) )){
                 return;
+                if(27 <= minkan.at(i) ) tinitu = false;
             }
         }
-        cout << "混一色" << endl;
-        if(menzen) *han = *han + 3;
-        else *han = *han + 2;
-       
+        if(tinitu){
+            cout << "清一色" << endl;
+            if(menzen) *han = *han + 6;
+            else *han = *han + 5;
+        }else{
+            cout << "混一色" << endl;
+            if(menzen) *han = *han + 3;
+            else *han = *han + 2;
+        }
     }
 }
-void honitu_manzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
+void somete_manzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
+    
     if((9 <= jyantou && jyantou <= 17)|| 27 <= jyantou){
-        for(int i : syuntu){
+        bool tinitu = true;
+        if(27 <= jyantou ) tinitu = false;
+        for(int i=0;i< syuntu.size();i++){
             if(!(9 <= syuntu.at(i) && syuntu.at(i) <= 17)){
                 return;
             }
         }
-        for(int i : anko){
+        for(int i = 0; i < anko.size(); i++){
             if(!((9 <= anko.at(i) && anko.at(i) <= 17)|| 27 <= anko.at(i) )){
                 return;
+                if(27 <= anko.at(i)) tinitu = false;
             }
         }
-        for(int i : minko){
-            if(!((9 <= anko.at(i) && anko.at(i) <= 17)|| 27 <= anko.at(i) )){
+        for(int i = 0; i < minko.size();i++){
+            if(!((9 <= minko.at(i) && minko.at(i) <= 17)|| 27 <= minko.at(i) )){
                 return;
+                if(27 <= minko.at(i)) tinitu = false;
             }
         }
-        for(int i : ankan){
-            if(!((9 <= anko.at(i) && anko.at(i) <= 17)|| 27 <= anko.at(i) )){
+        for(int i = 0; i < ankan.size(); i++){
+            if(!((9 <= ankan.at(i) && ankan.at(i) <= 17)|| 27 <= ankan.at(i) )){
                 return;
+                if(27 <= ankan.at(i)) tinitu = false;
             }
         }
-        for(int i : minkan){
-            if(!((9 <= anko.at(i) && anko.at(i) <= 17)|| 27 <= anko.at(i) )){
+        for(int i = 0;i < minkan.size(); i ++){
+            if(!((9 <= minkan.at(i) && minkan.at(i) <= 17)|| 27 <= minkan.at(i) )){
                 return;
+                if(27 <= minkan.at(i)) tinitu = false;
             }
         }
-        cout << "混一色" << endl;
-        if(menzen) *han = *han + 3;
-        else *han = *han + 2;
-       
+       if(tinitu){
+            cout << "清一色" << endl;
+            if(menzen) *han = *han + 6;
+            else *han = *han + 5;
+        }else{
+            cout << "混一色" << endl;
+            if(menzen) *han = *han + 3;
+            else *han = *han + 2;
+        }
     }
 }
-void honitu_souzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
-    if((18 <= jyantou && jyantou <=26)|| 27 <= jyantou){
-        for(int i : syuntu){
-            if(!(18 <= syuntu.at(i) && syuntu.at(i) <= 8)){
+void somete_souzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
+    if((18 <= jyantou && jyantou <= 26)|| 27 <= jyantou){
+        bool tinitu = true;
+        if(27 <= jyantou) tinitu = false;
+        for(int i=0;i< syuntu.size();i++){
+            if(!(18 <= syuntu.at(i) && syuntu.at(i) <= 26)){
                 return;
             }
         }
-        for(int i : anko){
+        for(int i = 0; i < anko.size(); i++){
             if(!((18 <= anko.at(i) && anko.at(i) <= 26)|| 27 <= anko.at(i) )){
                 return;
+                if(27 <= anko.at(i)) tinitu = false;
             }
         }
-        for(int i : minko){
-            if(!((18 <= anko.at(i) && anko.at(i) <= 26)|| 27 <= anko.at(i) )){
+        for(int i = 0; i < minko.size();i++){
+            if(!((18 <= minko.at(i) && minko.at(i) <= 26)|| 27 <= minko.at(i) )){
                 return;
+                if(27 <= minko.at(i)) tinitu = false;
             }
         }
-        for(int i : ankan){
-            if(!((18 <= anko.at(i) && anko.at(i) <= 26)|| 27 <= anko.at(i) )){
+        for(int i = 0; i < ankan.size(); i++){
+            if(!((18 <= ankan.at(i) && ankan.at(i) <= 26)|| 27 <= ankan.at(i) )){
                 return;
+                if(27 <= ankan.at(i)) tinitu = false;
             }
         }
-        for(int i : minkan){
-            if(!((18 <= anko.at(i) && anko.at(i) <= 26)|| 27 <= anko.at(i) )){
+        for(int i = 0;i < minkan.size(); i ++){
+            if(!((18 <= minkan.at(i) && minkan.at(i) <= 26)|| 27 <= minkan.at(i) )){
                 return;
+                if(27 <= minko.at(i)) tinitu = false;
             }
         }
-        cout << "混一色" << endl;
-        if(menzen) *han = *han + 3;
-        else *han = *han + 2;
-       
+        if(tinitu){
+            cout << "清一色" << endl;
+            if(menzen) *han = *han + 6;
+            else *han = *han + 5;
+        }else{
+            cout << "混一色" << endl;
+            if(menzen) *han = *han + 3;
+            else *han = *han + 2;
+        }
     }
 }
 void jyuntyan(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko,vector<int> ankan, vector<int> minkan, int *han){
     if(jyantou % 9 == 0 || jyantou % 9 == 8 ){
-        for(int i : syuntu){
+        for(int i = 0; i <syuntu.size();i++){
             if(!(syuntu.at(i) % 9 == 0 ||syuntu.at(i) % 9 == 6)){
                 return;
             }
         }
-        for(int i : anko){
+        for(int i= 0;i <anko.size();i++){
             if(!((anko.at(i) % 9 == 0 || anko.at(i) % 9 == 8) && anko.at(i) < 27)){
                 return;
             }
         }
-        for(int i : minko){
+        for(int i = 0;i < minko.size();i++){
             if(!((minko.at(i) % 9 == 0 || minko.at(i) % 9 == 8) && minko.at(i) < 27)){
                 return;
             }
         }
-        for(int i : ankan){
+        for(int i = 0; i < ankan.size();i++){
             if(!((ankan.at(i) % 9 == 0 || ankan.at(i) % 9 == 8) && ankan.at(i) < 27)){
                 return;
             }
         }
-        for(int i : minkan){
+        for(int i = 0; i <  minkan.size();i++){
             if(!((minkan.at(i) % 9 == 0 || minkan.at(i) % 9 == 8) && minkan.at(i) < 27 )){
                 return;
             }
@@ -578,84 +614,241 @@ void jyuntyan(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, ve
         else *han = *han + 2;
     }
 }
-void chinitu_pinzu(bool menzen, int jyantou,vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han ){
-    if (jyantou < 9){
-        for(int i : syuntu){
-            if(!(syuntu.at(i) < 9)) return;
-        }
-        for(int i : anko){
-            if(!(anko.at(i) < 9)) return;
-        }
-        for(int i : minko){
-            if(!(minko.at(i) < 9)) return;
-        }
-        for(int i : ankan){
-            if(!(ankan.at(i) < 9)) return;
-        }
-        for(int i : minkan){
-            if(!(minkan.at(i) < 9)) return;
-        }
-        cout << "清一色" << endl;
-        if(menzen){
-            *han = *han + 6;
-        }else{
-            *han = *han + 5;
-        }
-    }
-}
-void chinitu_manzu(bool menzen, int jyantou, vector<int> syuntu , vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
-    if(8 < jyantou && jyantou < 18){
-        for(int i : syuntu){
-            if(!(8 < syuntu.at(i)&& syuntu.at(i) < 18)) return;
-        }
-        for(int i : anko){
-            if(!(8 < anko.at(i) && anko.at(i) < 18 )) return;
-        }
-        for(int i : minko){
-            if(!(8 < minko.at(i) && minko.at(i) > 18))return;
-        }
-        for(int i : ankan){
-            if(!(8 < ankan.at(i) && ankan.at(i) > 18))return;
-        }
-        for(int i : minkan){
-            if(!(8 < minkan.at(i) && minkan.at(i) > 18)) return;
-        }
-        cout << "清一色" << endl;
-        if(menzen){
-            *han = *han + 6;
-        }else{
-            *han = *han + 5;
-        }
-    }
-}
-void chinitu_souzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
-    if(17 < jyantou && jyantou < 27){
-        for(int i : syuntu){
-            if(!(17 < syuntu.at(i) && syuntu.at(i) < 27)) return;
-        }
-        for(int i : anko){
-            if(!(17 < anko.at(i) && anko.at(i) < 27)) return;
-        }
-        for(int i : minko){
-            if(!(17 < minko.at(i) && minko.at(i) < 27)) return;
-        }
-        for(int i : ankan){
-            if(!(17 < ankan.at(i) && ankan.at(i) < 27)) return;
-        }
-        for(int i : minkan){
-            if(!(17 < minkan.at(i) && minkan.at(i) < 27))return;
-        }
-        cout << "清一色" << endl;
-        if(menzen){
-            *han = *han + 6;
-        }else {
-            *han = *han + 5;
-        }
-    }
-}
+// void chinitu_pinzu(bool menzen, int jyantou,vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han ){
+//     if (jyantou < 9){
+//         for(int i = 0;i <syuntu.size();i++){
+//             if(!(syuntu.at(i) < 9)) return;
+//         }
+//         for(int i = 0;i < anko.size();i++){
+//             if(!(anko.at(i) < 9)) return;
+//         }
+//         for(int i = 0; i < minko.size(); i++){
+//             if(!(minko.at(i) < 9)) return;
+//         }
+//         for(int i = 0; i < anko.size(); i ++){
+//             if(!(ankan.at(i) < 9)) return;
+//         }
+//         for(int i = 0; i < minkan.size();i++){
+//             if(!(minkan.at(i) < 9)) return;
+//         }
+//         cout << "清一色" << endl;
+//         if(menzen){
+//             *han = *han + 6;
+//         }else{
+//             *han = *han + 5;
+//         }
+//     }
+// }
+// void chinitu_manzu(bool menzen, int jyantou, vector<int> syuntu , vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
+//     if(8 < jyantou && jyantou < 18){
+//         for(int i : syuntu){
+//             if(!(8 < syuntu.at(i)&& syuntu.at(i) < 18)) return;
+//         }
+//         for(int i : anko){
+//             if(!(8 < anko.at(i) && anko.at(i) < 18 )) return;
+//         }
+//         for(int i : minko){
+//             if(!(8 < minko.at(i) && minko.at(i) > 18))return;
+//         }
+//         for(int i : ankan){
+//             if(!(8 < ankan.at(i) && ankan.at(i) > 18))return;
+//         }
+//         for(int i : minkan){
+//             if(!(8 < minkan.at(i) && minkan.at(i) > 18)) return;
+//         }
+//         cout << "清一色" << endl;
+//         if(menzen){
+//             *han = *han + 6;
+//         }else{
+//             *han = *han + 5;
+//         }
+//     }
+// }
+// void chinitu_souzu(bool menzen, int jyantou, vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan, int *han){
+//     if(17 < jyantou && jyantou < 27){
+//         for(int i : syuntu){
+//             if(!(17 < syuntu.at(i) && syuntu.at(i) < 27)) return;
+//         }
+//         for(int i : anko){
+//             if(!(17 < anko.at(i) && anko.at(i) < 27)) return;
+//         }
+//         for(int i : minko){
+//             if(!(17 < minko.at(i) && minko.at(i) < 27)) return;
+//         }
+//         for(int i : ankan){
+//             if(!(17 < ankan.at(i) && ankan.at(i) < 27)) return;
+//         }
+//         for(int i : minkan){
+//             if(!(17 < minkan.at(i) && minkan.at(i) < 27))return;
+//         }
+//         cout << "清一色" << endl;
+//         if(menzen){
+//             *han = *han + 6;
+//         }else {
+//             *han = *han + 5;
+//         }
+//     }
+// }
 
 //その他
 
 void show_han(int han){
     cout << "ハン：" << han << endl;
+}
+int calculate_hu(int mati, bool tumo, bool menzen,int bakaze, int jikaze,int jyantou, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan){
+
+
+    int point = 20;
+    if(menzen && !tumo) point += 10;
+
+    if(jyantou % 9 == 0 || jyantou % 9 ==8 || jyantou == bakaze||jyantou == jikaze || 31<=jyantou) point += 2;
+
+    for(int i = 0; i < anko.size(); i ++){
+        if(anko.at(i) % 9 == 0 || anko.at(i) % 9 == 8 || 27 <= anko.at(i)) point += 8;
+        else point += 4;
+    }
+    for(int i = 0; i < minko.size(); i++){
+        if(minko.at(i) % 9 == 0 || minko.at(i) % 9 == 8 || 27 <= minko.at(i)) point += 4;
+        else point += 2;
+    }
+    for(int i = 0; i < ankan.size();i++){
+        if(ankan.at(i) % 9 == 0 || ankan.at(i) % 9 == 8 || 27 <= ankan.at(i)) point += 32;
+        else point += 16;
+    }
+    for(int i = 0; i < minkan.size(); i++){
+        if(minkan.at(i) % 9 == 0|| minkan.at(i) % 9 == 8 || 27 <= minkan.at(i)) point += 16;
+        else point += 8;
+    }
+
+    switch(mati){
+        case 0 : 
+            if(tumo) point += 4;
+            else point += 2;
+            break;
+        case 1 :
+            if(tumo) point += 2;
+            break;
+        case 2 :
+            if(tumo) point += 4;
+            else point += 2;
+        case 3 :
+            if(tumo) point += 4;
+            else point += 2;
+            break;
+        case 4 :
+            if(tumo) point += 2;
+            break;
+    }
+    int a = point % 10;
+    if(a != 0) point = point - a + 10;
+    return point;
+}
+
+int calculate_point(int jikaze, int han, int hu){
+    if(jikaze == 27){
+        if(han == 1){
+            if(hu == 30) return 1500;
+            else if(hu == 40) return 2000;
+            else if(hu == 50) return 2400;
+            else if (hu == 60) return 2900;
+            else if(hu == 70) return 3400;
+            else if (hu == 80) return 3900;
+            else if (hu == 90) return 4400;
+            else if (hu == 100) return 4800;
+            else return 5300;
+        }else if (han == 2){
+            if(hu == 20) return 2000;
+            else if(hu == 25) return 2400;
+            else if(hu == 30) return 2900;
+            else if(hu == 40) return 3900;
+            else if(hu == 50) return 4800;
+            else if(hu == 60) return 5800;
+            else if(hu == 70) return 6800;
+        }else if(han ==3 ){
+            if(hu == 20) return 3900;
+            else if(hu == 25) return 4800;
+            else if(hu == 30) return 5800;
+            else if(hu == 40) return 7700;
+            else if(hu == 50) return 9600;
+            else if(hu == 60) return 11600;
+            else {
+                cout << "満貫" << endl;
+                return 12000;
+            }
+        } else if (han == 4){
+            if(hu == 20) return 7700;
+            else if (hu == 25) return 9600;
+            else if (hu == 30) return 11600;
+            else{
+                cout << "満貫" << endl;
+                return 12000;
+            }
+        }else if (han  == 5){
+            cout << "満貫" << endl;
+            return 12000;
+        }else if (han == 6 && han == 7){
+            cout << "跳満" << endl;
+            return 18000;
+        }else if (han == 8 && han == 9 && han == 10){
+            cout << "倍満" << endl;
+            return 24000;
+        }else if (han == 11 && han == 12){
+            cout << "三倍満" << endl;
+            return 36000;
+        }else {
+            cout << "数え役満" << endl;
+            return 48000;
+        }
+    } else {
+        if(han == 1){
+            if(hu == 30) return 1000;
+            else if(hu == 40) return 1300;
+            else if(hu == 50) return 1600;
+            else if(hu == 60) return 2000;
+            else if(hu == 70) return 2300;
+        }else if (han == 2){
+            if(hu == 20) return 1300;
+            else if (hu == 25) return 1600;
+            else if (hu == 30) return 2000;
+            else if (hu == 40) return 2600;
+            else if (hu == 50) return 3200;
+            else if (hu == 60) return 3900;
+            else if (hu == 70) return 4500;
+        }else if (han == 3){
+            if (hu == 20) return 2600;
+            else if (hu == 25) return 3200;
+            else if (hu == 30) return 3900;
+            else if (hu == 40) return 5200;
+            else if (hu == 50) return 6400;
+            else if (hu == 60) return 7700;
+            else {
+                cout << "満貫" << endl;
+                return 8000;
+            }
+        }else if (han == 4){
+            if (hu == 20) return 5200;
+            else if (hu == 25) return 6400;
+            else if (hu == 30) return 7700;
+            else {
+                cout << "満貫" << endl;
+                return 8000;
+            }
+        }else if (han == 5){
+            cout << "満貫" << endl;
+            return 8000;
+        }else if (han == 6 && han == 7){
+            cout << "跳満" << endl;
+            return 12000;
+        }else if (han == 8 && han == 9 && han == 10){
+            cout << "倍満" << endl;
+            return 16000;
+        }else if (han == 11 && han == 12){
+            cout << "三倍満" << endl;
+            return 24000;
+        } else {
+            cout << "数え満貫" << endl;
+            return 32000;
+        }
+    }
+    return -1;
 }
