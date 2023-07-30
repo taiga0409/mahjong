@@ -786,13 +786,13 @@ int calculate_point(int jikaze, int han, int hu){
         }else if (han  == 5){
             cout << "満貫" << endl;
             return 12000;
-        }else if (han == 6 && han == 7){
+        }else if (han == 6 || han == 7){
             cout << "跳満" << endl;
             return 18000;
-        }else if (han == 8 && han == 9 && han == 10){
+        }else if (han == 8 || han == 9 || han == 10){
             cout << "倍満" << endl;
             return 24000;
-        }else if (han == 11 && han == 12){
+        }else if (han == 11 || han == 12){
             cout << "三倍満" << endl;
             return 36000;
         }else {
@@ -836,17 +836,17 @@ int calculate_point(int jikaze, int han, int hu){
         }else if (han == 5){
             cout << "満貫" << endl;
             return 8000;
-        }else if (han == 6 && han == 7){
+        }else if (han == 6 || han == 7){
             cout << "跳満" << endl;
             return 12000;
-        }else if (han == 8 && han == 9 && han == 10){
+        }else if (han == 8 || han == 9 || han == 10){
             cout << "倍満" << endl;
             return 16000;
-        }else if (han == 11 && han == 12){
+        }else if (han == 11 || han == 12){
             cout << "三倍満" << endl;
             return 24000;
         } else {
-            cout << "数え満貫" << endl;
+            cout << "数え役満" << endl;
             return 32000;
         }
     }

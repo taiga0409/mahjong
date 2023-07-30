@@ -1,9 +1,11 @@
 #include "point.hpp"
+#include "
 
 
 
-void  find_mati(int *mati,int tumo, vector<int> syuntu, vector<int> anko,vector<int> minko,int jyantou){
+void  find_mati(int *mati,int tumo, vector<int> syuntu, vector<int> anko,vector<int> minko,vector<int> ankan,vector<int> minkan,int jyantou){
     cout << "ツモ： " << tumo << endl;
+    int point ;
     if(tumo == jyantou){
         cout << "単騎待ち" << endl;
         *mati = 0;
