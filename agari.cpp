@@ -389,7 +389,7 @@ int find_point(int jyantou, int tumo, int mati,vector<int> syuntu, vector<int> a
     int bakaze;
     int dora;
     int uradora;
-    bool menzen =false;
+    bool menzen =true;
     bool B_tumo=false;
     bool B_reach=false;
     bool B_ippatu=false;
@@ -428,9 +428,9 @@ int find_point(int jyantou, int tumo, int mati,vector<int> syuntu, vector<int> a
     somete_souzu(menzen,jyantou,syuntu,anko,minko,ankan,minkan,&han);
     jyuntyan(menzen,jyantou,syuntu,anko,minko,ankan,minkan,&han);
     //
-    for(int i = 0; i < syuntu.size(); i ++){
-        cout << syuntu.at(i) << endl;
-    }
+    // for(int i = 0; i < syuntu.size(); i ++){
+    //     cout << syuntu.at(i) << endl;
+    // }
 
 
     int hu = calculate_hu(mati,B_tumo,menzen,bakaze,jikaze,jyantou,anko,minko,ankan,minkan);
@@ -439,22 +439,33 @@ int find_point(int jyantou, int tumo, int mati,vector<int> syuntu, vector<int> a
     show_han(han);
     int point = calculate_point(jikaze,han,hu);
     cout << "点数："<<point << endl;
+
+    return point;
 }
 
 void  find_mati(int *mati,int tumo, vector<int> syuntu, vector<int> anko,vector<int> minko,vector<int> ankan,vector<int> minkan,int jyantou){
     // cout << "ツモ： " << tumo << endl;
     int point ;
+    int point_max = 0;
+    int mati_max ;
     if(tumo == jyantou){
         cout << "単騎待ち" << endl;
         *mati = 0;
         point = find_point(jyantou,tumo,*mati,syuntu,anko,minko,ankan,minkan);
+        if(point > point_max){
+            point_max = point;
+            mati_max = *mati;
+        }
     }
     for(int i : anko){
         if(tumo == i){
             cout << "シャボ待ち" << endl;
             *mati = 1;
              point = find_point(jyantou,tumo,*mati,syuntu,anko,minko,ankan,minkan);
-    
+        if(point > point_max){
+            point_max = point;
+            mati_max = *mati;
+        }
         }
     }
     for(int i : minko){
@@ -462,7 +473,10 @@ void  find_mati(int *mati,int tumo, vector<int> syuntu, vector<int> anko,vector<
             cout << "シャボ待ち" << endl;
             *mati = 1; 
             point = find_point(jyantou,tumo,*mati,syuntu,anko,minko,ankan,minkan);
-    
+            if(point > point_max){
+            point_max = point;
+            mati_max = *mati;
+        }
         }
     }
     for(int i : syuntu){
@@ -470,43 +484,62 @@ void  find_mati(int *mati,int tumo, vector<int> syuntu, vector<int> anko,vector<
             cout << "カンチャン待ち" << endl;
             *mati = 2;
              point = find_point(jyantou,tumo,*mati,syuntu,anko,minko,ankan,minkan);
-    
+            if(point > point_max){
+            point_max = point;
+            mati_max = *mati;
+        }
         }
         if(i % 9 == 0){
             if (tumo == i+2){
                 cout << "ペンチャン待ち" << endl;
                 *mati = 3;
                  point = find_point(jyantou,tumo,*mati,syuntu,anko,minko,ankan,minkan);
-    
+                if(point > point_max){
+            point_max = point;
+            mati_max = *mati;
+        }
             }
             if(tumo == i){
                 cout << "リャンメン待ち" << endl;
                 *mati = 4;
                  point = find_point(jyantou,tumo,*mati,syuntu,anko,minko,ankan,minkan);
-    
+                if(point > point_max){
+            point_max = point;
+            mati_max = *mati;
+        }
             }
         }else if (i % 9 == 6){
             if(tumo == i){
                 cout << "ペンチャン待ち" << endl;
                 *mati = 3;
                  point = find_point(jyantou,tumo,*mati,syuntu,anko,minko,ankan,minkan);
-    
+                if(point > point_max){
+            point_max = point;
+            mati_max = *mati;
+        }
             }
             if(tumo == i+2){
                 cout << "リャンメン待ち" << endl;
                 *mati = 4;
                  point = find_point(jyantou,tumo,*mati,syuntu,anko,minko,ankan,minkan);
-    
+                if(point > point_max){
+            point_max = point;
+            mati_max = *mati;
+        }
             }
         }else{
             if(tumo == i || tumo == i+1){
                 cout << "カンチャン待ち" << endl;
                 *mati = 2;
                  point = find_point(jyantou,tumo,*mati,syuntu,anko,minko,ankan,minkan);
-    
+                if(point > point_max){
+            point_max = point;
+            mati_max = *mati;
+        }
             }
         }
     }
+    cout << "最終点数：" << point_max << endl;
 }
 
 
