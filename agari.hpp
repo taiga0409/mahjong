@@ -25,13 +25,13 @@ bool find_chitoi(int *pinzu, int *manzu, int *souzu, int *jihai);
 void tumo(int i , int *pinzu, int *manzu,int *souzu, int *jihai);
 void find_matihai(int i,int *count,int *pinzu, int *manzu, int *souzu, int *jihai,
                     vector<int>& syuntu, vector<int>& anko, vector<int>& minko, vector<int>& ankan, vector<int>& minkan,
-                    int tumo, int jyantou);
+                    int tumo, int jyantou,int* point_max);
 // void find_matihai(int i,int *count, int m, bool *agari,int *pinzu, int *manzu, int *souzu,int *jihai,
 // );
 void choose_coutu(int i,int *pinzu, int *manzu, int *souzu, int *jihai);
 
 void copy_vector(vector<int> syuntu, vector<int> anko, vector<int> minko, vector<int> ankan, vector<int> minkan,
                 vector<int>& c_syuntu, vector<int>& c_anko, vector<int>& c_minko, vector<int>& c_ankan, vector<int>& c_minkan);
-void find_mati(int *mati,int tumo, vector<int> syuntu, vector<int> anko, vector<int> minko,vector<int> ankan,vector<int> minkan, int jyantou);
+void find_mati(int *mati,int tumo, vector<int> syuntu, vector<int> anko, vector<int> minko,vector<int> ankan,vector<int> minkan, int jyantou,int *point_max);
 
 #endif //MAHJONG_HPP_ 

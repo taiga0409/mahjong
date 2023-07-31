@@ -15,13 +15,13 @@ int main(){
 
     pinzu[0] = 0;
     pinzu[1] = 0;
-    pinzu[2] = 1;
-    pinzu[3] = 4;
-    pinzu[4] = 3;
-    pinzu[5] = 1;
-    pinzu[6] = 2;
-    pinzu[7] = 1;
-    pinzu[8] = 1;
+    pinzu[2] = 0;
+    pinzu[3] = 0;
+    pinzu[4] = 0;
+    pinzu[5] = 0;
+    pinzu[6] = 0;
+    pinzu[7] = 0;
+    pinzu[8] = 0;
 
     manzu[0] = 0;
     manzu[1] = 0;
@@ -34,22 +34,22 @@ int main(){
     manzu[8] = 0;
 
     souzu[0] = 0;
-    souzu[1] = 0;
-    souzu[2] = 0;
-    souzu[3] = 0;
-    souzu[4] = 0;
-    souzu[5] = 0;
-    souzu[6] = 0;
-    souzu[7] = 0;
-    souzu[8] = 0;
+    souzu[1] = 1;
+    souzu[2] = 3;
+    souzu[3] = 1;
+    souzu[4] = 2;
+    souzu[5] = 2;
+    souzu[6] = 2;
+    souzu[7] = 1;
+    souzu[8] = 1;
 
-    jihai[0] = 0;
-    jihai[1] = 0;
-    jihai[2] = 0;
-    jihai[3] = 0;
-    jihai[4] = 0;
-    jihai[5] = 0;
-    jihai[6] = 0;
+    jihai[0] = 0; //東
+    jihai[1] = 0; //南
+    jihai[2] = 0; //西
+    jihai[3] = 0; //北
+    jihai[4] = 0; //白
+    jihai[5] = 0; //發
+    jihai[6] = 0; //中
 
     int count_mentu = 0;
     for(int j = 0; j < 34; j ++){

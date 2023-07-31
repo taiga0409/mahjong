@@ -89,7 +89,7 @@ void peikou(vector<int> syuntu,bool menzen, int *han){
         }
         if(ryanpeikou){
             cout << "二盃口" << endl;
-            *han = *han + 2;
+            *han = *han + 3;
         }else if (ipeikou){
             cout << "一盃口" << endl;
             *han = *han + 1;
