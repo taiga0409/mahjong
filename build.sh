@@ -4,6 +4,7 @@ if  [ $# -eq 0 ] ; then
     g++ -std=c++11 -o point point.cpp point_test.cpp matihai.cpp
     g++ -std=c++11 -o hola hola_test.cpp mahjong.cpp
     g++ -std=c++11 -o matihai matihai_test.cpp mahjong.cpp
+    g++ -std=c++11 -o agari agari_test.cpp agari.cpp point.cpp
 fi
 
 case $1 in  
@@ -15,6 +16,9 @@ case $1 in
         ;;
     -m)
         g++ -std=c++11 -o matihai matihai_test.cpp mahjong.cpp
+        ;;
+    -a) 
+        g++ -std=c++11 -o agari agari_test.cpp agari.cpp point.cpp
         ;;
     --)
         g++ -std=c++11 -o nothing point.cpp  matihai.cpp mahjong.cpp

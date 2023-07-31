@@ -12,5 +12,9 @@ if [ -e "point" ]; then
     ./point
     rm point
 fi
+if [ -e "agari" ]; then
+    ./agari
+    rm agari
+fi
 
 #chmod +x run.sh
